@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title  %></title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+    .reduceWidth{
+        margin: 0 auto;
+        width: 500px;
+    }
+
+    .some-class {
+      float: left;
+      clear: none;
+    }
+    
+    label {
+      float: left;
+      clear: none;
+      display: block;
+      padding: 0px 1em 0px 8px;
+    }
+    
+    input[type=radio],
+    input.radio {
+      float: left;
+      clear: none;
+      margin: 2px 0 0 2px;
+    }
+    .increaserFont{
+        font-size: 15px;
+        padding-bottom: 30px;
+        padding-top: 10px;
+    }
+
+    </style>
+    
+</head>
+<body>
+    
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <a href="/" class="logo"> <span>max</span>wheels </a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#vehicles">vehicles</a>
+        <a href="#services">services</a>
+        <a href="#featured">featured</a>
+        <a href="#reviews">reviews</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div id="login-btn">
+        <button class="btn">login</button>
+        <i class="far fa-user"></i>
+    </div>
+
+</header> 
+    
+<div class="login-form-container">
+
+    <span id="close-login-form" class="fas fa-times"></span>
+
+    <form action="/users/login" method="post">
+        <h3>user login</h3>
+        <input type="email" name="email" placeholder="email" class="box">
+        <input type="password" name="pwd" placeholder="password" class="box">
+        <p> forget your password <a href="#">click here</a> </p>
+        <input type="submit" value="login" class="btn">
+       
+        <p> don't have an account <a href="#">create one</a> </p>
+    </form>
+
+</div>
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"><span>contact</span> us</h1>
+
+    <div class="row reduceWidth">
+
+        <form action="/users/register" method="post">
+            <h3>Register</h3>
+            <input type="text" name="name" placeholder="your name" required class="box">
+            <input type="email" name="email" placeholder="your email" required class="box">
+            <input type="tel" name="number" placeholder="phone number" required class="box">
+
+            <div class="increaserFont">
+                <label for="">User Type</label>
+                <input type="radio" class="radio" name="UserType" value="Buyer" checked/>
+                <label for="Buyer">Buyer</label>
+                <input type="radio" class="radio" name="UserType" value="Seller" />
+                <label for="Seller">Seller</label>
+            </div>
+           
+            <input type="password" name="pwd" placeholder="New password" required class="box">
+            <input type="password"  placeholder="confirm password" required class="box">
+            <input type="submit" value="Register" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+
+<%- include('partials/footer.ejs') %>
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
