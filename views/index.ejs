@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+
     
 </head>
 <body>
@@ -38,15 +39,17 @@
     </div>
 
 </header> 
+
+
     
 <div class="login-form-container">
 
     <span id="close-login-form" class="fas fa-times"></span>
 
-    <form action="/users/login" method="post">
+    <form action="/users/validate" method="post">
         <h3>user login</h3>
         <input type="email" name="email" placeholder="email" class="box">
-        <input type="password" name="pwd" placeholder="password" class="box">
+        <input type="password" name="password" placeholder="password" class="box">
         <p> forget your password <a href="#">click here</a> </p>
         <input type="submit" value="login" class="btn">
        
@@ -54,6 +57,12 @@
     </form>
 
 </div>
+
+<% if(clickLogin){ %>
+    <script>
+        document.querySelector('.login-form-container').classList.toggle('active');
+    </script>
+<% } %>
 
 <section class="home" id="home">
 

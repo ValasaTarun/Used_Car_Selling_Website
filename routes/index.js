@@ -13,7 +13,7 @@ MongoClient.connect(url, function (err, db) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Car Selling Website' });
+  res.render('index', { title: 'Car Selling Website' , clickLogin : false });
 });
 
 router.get('/contact', async (req,res)=>{
