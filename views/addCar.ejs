@@ -94,9 +94,9 @@
 
     <div class="row reduceWidth">
 
-        <form action="/users/register" method="post">
+        <form action="/users/addCar" method="post">
             <h3>List Your Car</h3>
-            <input type="text" name="name" placeholder="Car Model Name" required class="box">
+            
 
 
             <div class="increaserFont">
@@ -118,6 +118,7 @@
                     <option value="navi-mumbai" data-testing-id="navi-mumbai">Navi Mumbai</option>
                     <option value="ahmednagar" data-testing-id="ahmednagar">Ahmednagar</option>
                     <option value="akola" data-testing-id="akola">Akola</option>
+                    <option value="hyderabad" data-testing-id="akola">Hyderabad</option>
                     <option value="amravati" data-testing-id="amravati">Amravati (Maharashtra)</option>
                     <option value="aurangabad-maharashtra" data-testing-id="aurangabad-maharashtra">Aurangabad</option>
                 </select>
@@ -238,12 +239,13 @@
                     
                 </select>
             </div>
-            
+            <br>
 
            
            
-            <input type="number" name="kmsDriven" step="500" min="150000" max="400000" placeholder="Kilometers Driven" required class="box">
-
+            <input type="number" name="kmsDriven" step="500" min="15000" max="400000" placeholder="Kilometers Driven" required class="box">
+            <br>
+            <input type="number" name="ESP" step="10000" min="200000" max="4000000" placeholder="Expected Selling Price" required class="box">
             <input type="file" id="img" name="carImage" accept="image/*" class="box">
 
             <input type="submit" value="List Car" class="btn">

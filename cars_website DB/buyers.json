@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "629374f99b385d19b3176f2d"
+  },
+  "name": "Rohan",
+  "email": "rohan@email.com",
+  "number": "9502998809",
+  "UserType": "Buyer",
+  "password": "$2a$10$JSoS925vdrquRK3PGKOhZ.NzbtOodMOxCC7WSZL5HriISvFo6Q2ny",
+  "loginData": [
+    "Logout On : 29/5/2022, 7:52:03 pm",
+    "Login On : 29/5/2022, 7:51:40 pm",
+    "Logout by expiration of Token ",
+    "Login On : 29/5/2022, 7:51:21 pm"
+  ]
+}]

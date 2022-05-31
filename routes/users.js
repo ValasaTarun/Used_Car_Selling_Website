@@ -43,8 +43,13 @@ router.get('/login',(req,res)=>{
  
 })
 
-router.get('/listCar',(req,res)=>{
-  res.render('addCar',{title: 'List Car Page'});
+router.get('/listCar',isLogined(),(req,res)=>{
+  if(decodedResult(req.cookies.authToken).payload.user == 'sellers'){
+    res.render('addCar',{title: 'List Car Page'});
+  }
+  else{
+    res.send('<center><h1> You Have to be a Seller to List the Car </center></h1>')
+  }
 })
 
 router.post('/register',async (req,res)=>{
@@ -182,6 +187,16 @@ router.get('/logout',function(req,res,next){
   
 })
 
+router.post('/addCar',isLogined(), async (req,res)=>{
+  // console.log(req.body)
+  req.body['listedBy'] = decodedResult(req.cookies.authToken).payload.name
+  const insertRecord = JSON.parse(JSON.stringify(req.body));
+  console.log(insertRecord);
+  const result = await dbConn.collection('listedCars').insertOne(insertRecord);
+  console.log(result); 
+  res.send(' Form Submitted ' + decodedResult(req.cookies.authToken).payload.name )
 
+
+})
 
 module.exports = router;

@@ -35,6 +35,7 @@ router.get('/contact', async (req,res)=>{
 
 router.get('/register', async (req,res)=>{
   res.render('register',{title: 'Register Page'});
+  
 })
 
 module.exports = router;

@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "6295823be6a9505c64dab4b1"
+  },
+  "location": "indore",
+  "company": "Honda",
+  "car_model": "Honda Amaze 1.2",
+  "year": "2010",
+  "kmsDriven": "32000",
+  "ESP": "400000",
+  "carImage": "",
+  "listedBy": "Tarun"
+}]

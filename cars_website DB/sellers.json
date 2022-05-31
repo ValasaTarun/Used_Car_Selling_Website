@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "629374a99b385d19b3176f2c"
+  },
+  "name": "Tarun",
+  "email": "tarun@email.com",
+  "number": "8919109763",
+  "UserType": "Seller",
+  "password": "$2a$10$MyJootbWqGjdbV112qL8rurtEeqHxh/dztgZp6d1V7nM.G5q4/Zde",
+  "loginData": [
+    "Login On : 31/5/2022, 8:14:00 am",
+    "Logout by expiration of Token ",
+    "Login On : 31/5/2022, 8:01:17 am",
+    "Logout by expiration of Token ",
+    "Login On : 31/5/2022, 7:55:02 am",
+    "Logout by expiration of Token ",
+    "Login On : 31/5/2022, 7:44:41 am",
+    "Logout by expiration of Token ",
+    "Login On : 30/5/2022, 10:53:37 pm",
+    "Logout On : 30/5/2022, 10:41:01 pm",
+    "Login On : 30/5/2022, 10:40:11 pm",
+    "Logout On : 30/5/2022, 10:39:57 pm",
+    "Login On : 30/5/2022, 10:39:52 pm",
+    "Logout On : 30/5/2022, 10:38:38 pm",
+    "Login On : 30/5/2022, 10:37:39 pm",
+    "Logout On : 30/5/2022, 10:36:21 pm",
+    "Login On : 30/5/2022, 10:31:26 pm",
+    "Logout On : 30/5/2022, 10:30:20 pm",
+    "Login On : 30/5/2022, 10:25:12 pm",
+    "Logout On : 29/5/2022, 7:49:39 pm",
+    "Login On : 29/5/2022, 7:47:14 pm",
+    "Logout by expiration of Token ",
+    "Login On : 29/5/2022, 7:46:32 pm",
+    "Logout by expiration of Token ",
+    "Login On : 29/5/2022, 7:42:46 pm",
+    "Logout by expiration of Token ",
+    "Login On : 29/5/2022, 7:39:53 pm",
+    "Logout by expiration of Token ",
+    "Login On : 29/5/2022, 7:37:35 pm"
+  ]
+}]
