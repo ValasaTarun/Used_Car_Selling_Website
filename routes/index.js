@@ -53,4 +53,12 @@ router.get('/singleCar/:carId',isLogined(), async (req,res)=>{
   res.render('individualCarPage',{title: 'Contact Page',result,isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin' }) 
 })
 
+router.get('/edit/:carId',async (req,res)=>{
+
+  console.log(req.params)
+  const result = await dbConn.collection('listedCars').findOne({'_id':ObjectId(req.params.carId)});
+  res.render('addCar',{title: 'List Car Page',result});
+
+})
+
 module.exports = router;

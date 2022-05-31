@@ -57,12 +57,7 @@
     <a href="/" class="logo"> <span>max</span>wheels </a>
 
     <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#vehicles">vehicles</a>
-        <a href="#services">services</a>
-        <a href="#featured">featured</a>
-        <a href="#reviews">reviews</a>
-        <a href="#contact">contact</a>
+        
     </nav>
 
     <div id="login-btn">
@@ -243,6 +238,8 @@
             <br>
             <input type="number" name="ESP" step="10000" min="200000" max="4000000" placeholder="Expected Selling Price" required class="box">
             <input type="file" id="img" name="carImage" accept="image/*" class="box">
+
+            <input type="hidden" class="form-control"  id="exampleLastName1"  name="carId" value="<%=result._id%>"  >
 
             <input type="submit" value="List Car" class="btn">
         </form>

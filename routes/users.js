@@ -200,4 +200,67 @@ router.post('/addCar',isLogined(), async (req,res)=>{
 
 })
 
+router.post('/addProperty',async function(req,res,next){
+
+  let property = {
+    name:req.body.name.trim(),
+    description:req.body.description,
+    city:req.body.city,
+    area:req.body.area,
+    listedBy:decodedResult(req.cookies.authToken).payload.name,
+    fileLocaiton:'',
+    propertyType:req.body.inlineRadioOptions,
+    price:req.body.price,
+    views:0,
+    isApproved:'false',
+  }
+  const dbConn = returnCon()
+  if(req.body.pkey){
+    console.log('---------------> PKEY')
+    // console.log('---------------> from addProeprty')
+    // console.log(property)
+    // console.log('---------------> body')
+    console.log(req.body)
+    
+    if(req.file){
+      property.fileLocaiton = req.file.filename
+    }
+
+    var temp = { $set: property }  
+    await dbConn.collection("properties").updateOne({ "_id": ObjectId(req.body.pkey) }, temp)
+    console.log("1 row is edited");
+    res.redirect('/properties')
+  }
+  else{
+
+    console.log('---------------> from addProeprty')
+    console.log(property)
+    console.log('---------------> body')
+    console.log(req.body)
+
+    if(property.name){
+      
+      if(req.file){
+        console.log(req.file)
+        console.log(req.file.filename)
+        property.fileLocaiton = req.file.filename
+      }
+      
+      const result = await dbConn.collection('properties').insertOne(property)
+      console.log(result)
+      res.redirect('/properties')
+
+
+    }
+    else{
+      res.send('property not listed')
+    }
+
+
+  }
+
+
+})
+
+
 module.exports = router;
