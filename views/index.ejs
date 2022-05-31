@@ -33,10 +33,17 @@
         <a href="#contact">contact</a>
     </nav>
 
-    <div id="login-btn">
-        <button class="btn">login</button>
-        <i class="far fa-user"></i>
-    </div>
+    <% if(isLogined){%>
+        <div id="login-btn">
+            <a href="/users/logout" class="btn">Logout</a>
+            <i class="far fa-user"></i>
+        </div>
+    <% } else { %>
+        <div id="login-btn">
+            <button class="btn">login</button>
+            <i class="far fa-user"></i>
+        </div>
+        <% } %>
 
 </header> 
 

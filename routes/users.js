@@ -38,11 +38,14 @@ router.get('/login',(req,res)=>{
     res.redirect('/');
   }
   else{
-    res.render('index', { title: 'Car Selling Website' , clickLogin : true });
+    res.render('index', { title: 'Car Selling Website' , clickLogin : true , isLogined : false });
   }
  
 })
 
+router.get('/listCar',(req,res)=>{
+  res.render('addCar',{title: 'List Car Page'});
+})
 
 router.post('/register',async (req,res)=>{
 
@@ -145,12 +148,6 @@ router.post('/validate', async function(req,res,next){
   validateUser(req,query,ifBuyer,ifSellers)
 
 })
-
-router.get('/login', function(req,res,next){
-
-
-})
-
 
 router.get('/logout',function(req,res,next){
 

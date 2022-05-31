@@ -4,6 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/mydb";
 var ObjectId = require('mongodb').ObjectId;
 var dbConn;
+const { generateToken , decodedResult } = require('../dependencies/jwt')
 MongoClient.connect(url, function (err, db) {
   if (err) throw err;
   console.log("Mongo Connection Success! Index");
@@ -11,9 +12,21 @@ MongoClient.connect(url, function (err, db) {
 
 });
 
+function isLogined(){
+  return (req, res,next)=>{
+      // console.log(decodedResult(req.cookies.authToken))
+      if(decodedResult(req.cookies.authToken)){
+          if(decodedResult(req.cookies.authToken).payload.user != 'admin') next() ;
+      }
+      else{
+          res.redirect('/users/login')
+      }
+  }
+}
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Car Selling Website' , clickLogin : false });
+router.get('/', isLogined() ,function(req, res, next) {
+  res.render('index', { title: 'Car Selling Website' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  });
 });
 
 router.get('/contact', async (req,res)=>{

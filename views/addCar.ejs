@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title  %></title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+    .reduceWidth{
+        margin: 0 auto;
+        width: 500px;
+    }
+
+    .some-class {
+      float: left;
+      clear: none;
+    }
+    
+    label {
+      float: left;
+      clear: none;
+      display: block;
+      padding: 0px 1em 0px 8px;
+    }
+    
+    input[type=radio],
+    input.radio {
+      float: left;
+      clear: none;
+      margin: 2px 0 0 2px;
+    }
+    .increaserFont{
+        font-size: 15px;
+        padding-bottom: 30px;
+        padding-top: 10px;
+    }
+
+    </style>
+    
+</head>
+<body>
+    
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <a href="/" class="logo"> <span>max</span>wheels </a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#vehicles">vehicles</a>
+        <a href="#services">services</a>
+        <a href="#featured">featured</a>
+        <a href="#reviews">reviews</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div id="login-btn">
+        <button class="btn">login</button>
+        <i class="far fa-user"></i>
+    </div>
+
+</header> 
+    
+<div class="login-form-container">
+
+    <span id="close-login-form" class="fas fa-times"></span>
+
+    <form action="/users/login" method="post">
+        <h3>user login</h3>
+        <input type="email" name="email" placeholder="email" class="box">
+        <input type="password" name="pwd" placeholder="password" class="box">
+        <p> forget your password <a href="#">click here</a> </p>
+        <input type="submit" value="login" class="btn">
+       
+        <p> don't have an account <a href="#">create one</a> </p>
+    </form>
+
+</div>
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"><span>contact</span> us</h1>
+
+    <div class="row reduceWidth">
+
+        <form action="/users/register" method="post">
+            <h3>List Your Car</h3>
+            <input type="text" name="name" placeholder="Car Model Name" required class="box">
+
+
+            <div class="increaserFont">
+                <label for="cars">Choose City:</label>
+                <select name="location" id="cars">
+                    <option value="">Select your City</option><optgroup label="Top Cities">
+                    <option value="mumbai" data-testing-id="mumbai">Mumbai</option>
+                    <option value="bangalore" data-testing-id="bangalore">Bangalore</option>
+                    <option value="nagpur" data-testing-id="nagpur">Nagpur</option>
+                    <option value="bhopal" data-testing-id="bhopal">Bhopal</option>
+                    <option value="indore" data-testing-id="indore">Indore</option>
+                    <option value="kalyan" data-testing-id="kalyan">Kalyan</option>
+                    <option value="jabalpur" data-testing-id="jabalpur">Jabalpur</option>
+                    <option value="panvel" data-testing-id="panvel">Panvel</option>
+                    <option value="kochi" data-testing-id="kochi">Kochi</option>
+                    <option value="delhi" data-testing-id="delhi">Delhi</option>
+                    <option value="kurnool" data-testing-id="kurnool">Kurnool</option>
+                    <option value="pune" data-testing-id="pune">Pune</option>
+                    <option value="navi-mumbai" data-testing-id="navi-mumbai">Navi Mumbai</option>
+                    <option value="ahmednagar" data-testing-id="ahmednagar">Ahmednagar</option>
+                    <option value="akola" data-testing-id="akola">Akola</option>
+                    <option value="amravati" data-testing-id="amravati">Amravati (Maharashtra)</option>
+                    <option value="aurangabad-maharashtra" data-testing-id="aurangabad-maharashtra">Aurangabad</option>
+                </select>
+            </div>
+
+            <div class="increaserFont">
+                <label for="cars">Choose Car Company:</label>
+                <select  id="company" name="company" required="1" onchange="load_car_models(this.id,'car_models')" >
+            
+                    <option value="Select Company">Select Company</option>
+                    
+                    <option value="Audi">Audi</option>
+                    
+                    <option value="BMW">BMW</option>
+                    
+                    <option value="Chevrolet">Chevrolet</option>
+                    
+                    <option value="Datsun">Datsun</option>
+                    
+                    <option value="Fiat">Fiat</option>
+                    
+                    <option value="Force">Force</option>
+                    
+                    <option value="Ford">Ford</option>
+                    
+                    <option value="Hindustan">Hindustan</option>
+                    
+                    <option value="Honda">Honda</option>
+                    
+                    <option value="Hyundai">Hyundai</option>
+                    
+                    <option value="Jaguar">Jaguar</option>
+                    
+                    <option value="Jeep">Jeep</option>
+                    
+                    <option value="Land">Land</option>
+                    
+                    <option value="Mahindra">Mahindra</option>
+                    
+                    <option value="Maruti">Maruti</option>
+                    
+                    <option value="Mercedes">Mercedes</option>
+                    
+                    <option value="Mini">Mini</option>
+                    
+                    <option value="Mitsubishi">Mitsubishi</option>
+                    
+                    <option value="Nissan">Nissan</option>
+                    
+                    <option value="Renault">Renault</option>
+                    
+                    <option value="Skoda">Skoda</option>
+                    
+                    <option value="Tata">Tata</option>
+                    
+                    <option value="Toyota">Toyota</option>
+                    
+                    <option value="Volkswagen">Volkswagen</option>
+                    
+                    <option value="Volvo">Volvo</option>
+            
+                </select>
+            </div>
+            <!-- <input type="text" name="noName" placeholder="" required class="box">
+            <input type="text" name="number" placeholder="Registration number" required class="box"> -->
+
+            <div class="increaserFont">
+                <label for="cars">Select the model:</label>
+                <select class="selectpicker form-control" id="car_models" name="car_model" required="1" >
+                </select>
+            </div>
+
+            <div class="increaserFont">
+                <label>Select Year of Purchase: </label>
+                <select class="selectpicker form-control" id="year" name="year" required="1" style="width: 100px;">
+                    
+                    <option value="2019">2019</option>
+                    
+                    <option value="2018">2018</option>
+                    
+                    <option value="2017">2017</option>
+                    
+                    <option value="2016">2016</option>
+                    
+                    <option value="2015">2015</option>
+                    
+                    <option value="2014">2014</option>
+                    
+                    <option value="2013">2013</option>
+                    
+                    <option value="2012">2012</option>
+                    
+                    <option value="2011">2011</option>
+                    
+                    <option value="2010">2010</option>
+                    
+                    <option value="2009">2009</option>
+                    
+                    <option value="2008">2008</option>
+                    
+                    <option value="2007">2007</option>
+                    
+                    <option value="2006">2006</option>
+                    
+                    <option value="2005">2005</option>
+                    
+                    <option value="2004">2004</option>
+                    
+                    <option value="2003">2003</option>
+                    
+                    <option value="2002">2002</option>
+                    
+                    <option value="2001">2001</option>
+                    
+                    <option value="2000">2000</option>
+                    
+
+                    
+                </select>
+            </div>
+            
+
+           
+           
+            <input type="number" name="kmsDriven" step="500" min="150000" max="400000" placeholder="Kilometers Driven" required class="box">
+
+            <input type="file" id="img" name="carImage" accept="image/*" class="box">
+
+            <input type="submit" value="List Car" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+
+<%- include('partials/footer.ejs') %>
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="/js/script.js"></script>
+
+<script>
+
+    let companies  = 'Select Company,Audi,BMW,Chevrolet,Datsun,Fiat,Force,Ford,Hindustan,Honda,Hyundai,Jaguar,Jeep,Land,Mahindra,Maruti,Mercedes,Mini,Mitsubishi,Nissan,Renault,Skoda,Tata,Toyota,Volkswagen,Volvo'.split(',') , car_models = 'Audi A3 Cabriolet,Audi A4 1.8,Audi A4 2.0,Audi A6 2.0,Audi A8,Audi Q3 2.0,Audi Q5 2.0,Audi Q7,BMW 3 Series,BMW 5 Series,BMW 7 Series,BMW X1,BMW X1 sDrive20d,BMW X1 xDrive20d,Chevrolet Beat,Chevrolet Beat Diesel,Chevrolet Beat LS,Chevrolet Beat LT,Chevrolet Beat PS,Chevrolet Cruze LTZ,Chevrolet Enjoy,Chevrolet Enjoy 1.4,Chevrolet Sail 1.2,Chevrolet Sail UVA,Chevrolet Spark,Chevrolet Spark 1.0,Chevrolet Spark LS,Chevrolet Spark LT,Chevrolet Tavera LS,Chevrolet Tavera Neo,Datsun GO T,Datsun Go Plus,Datsun Redi GO,Fiat Linea Emotion,Fiat Petra ELX,Fiat Punto Emotion,Force Motors Force,Force Motors One,Ford EcoSport,Ford EcoSport Ambiente,Ford EcoSport Titanium,Ford EcoSport Trend,Ford Endeavor 4x4,Ford Fiesta,Ford Fiesta SXi,Ford Figo,Ford Figo Diesel,Ford Figo Duratorq,Ford Figo Petrol,Ford Fusion 1.4,Ford Ikon 1.3,Ford Ikon 1.6,Hindustan Motors Ambassador,Honda Accord,Honda Amaze,Honda Amaze 1.2,Honda Amaze 1.5,Honda Brio,Honda Brio V,Honda Brio VX,Honda City,Honda City 1.5,Honda City SV,Honda City VX,Honda City ZX,Honda Jazz S,Honda Jazz VX,Honda Mobilio,Honda Mobilio S,Honda WR V,Hyundai Accent,Hyundai Accent Executive,Hyundai Accent GLE,Hyundai Accent GLX,Hyundai Creta,Hyundai Creta 1.6,Hyundai Elantra 1.8,Hyundai Elantra SX,Hyundai Elite i20,Hyundai Eon,Hyundai Eon D,Hyundai Eon Era,Hyundai Eon Magna,Hyundai Eon Sportz,Hyundai Fluidic Verna,Hyundai Getz,Hyundai Getz GLE,Hyundai Getz Prime,Hyundai Grand i10,Hyundai Santro,Hyundai Santro AE,Hyundai Santro Xing,Hyundai Sonata Transform,Hyundai Verna,Hyundai Verna 1.4,Hyundai Verna 1.6,Hyundai Verna Fluidic,Hyundai Verna Transform,Hyundai Verna VGT,Hyundai Xcent Base,Hyundai Xcent SX,Hyundai i10,Hyundai i10 Era,Hyundai i10 Magna,Hyundai i10 Sportz,Hyundai i20,Hyundai i20 Active,Hyundai i20 Asta,Hyundai i20 Magna,Hyundai i20 Select,Hyundai i20 Sportz,Jaguar XE XE,Jaguar XF 2.2,Jeep Wrangler Unlimited,Land Rover Freelander,Mahindra Bolero DI,Mahindra Bolero Power,Mahindra Bolero SLE,Mahindra Jeep CL550,Mahindra Jeep MM,Mahindra KUV100,Mahindra KUV100 K8,Mahindra Logan,Mahindra Logan Diesel,Mahindra Quanto C4,Mahindra Quanto C8,Mahindra Scorpio,Mahindra Scorpio 2.6,Mahindra Scorpio LX,Mahindra Scorpio S10,Mahindra Scorpio S4,Mahindra Scorpio SLE,Mahindra Scorpio SLX,Mahindra Scorpio VLX,Mahindra Scorpio Vlx,Mahindra Scorpio W,Mahindra TUV300 T4,Mahindra TUV300 T8,Mahindra Thar CRDe,Mahindra XUV500,Mahindra XUV500 W10,Mahindra XUV500 W6,Mahindra XUV500 W8,Mahindra Xylo D2,Mahindra Xylo E4,Mahindra Xylo E8,Maruti Suzuki 800,Maruti Suzuki A,Maruti Suzuki Alto,Maruti Suzuki Baleno,Maruti Suzuki Celerio,Maruti Suzuki Ciaz,Maruti Suzuki Dzire,Maruti Suzuki Eeco,Maruti Suzuki Ertiga,Maruti Suzuki Esteem,Maruti Suzuki Estilo,Maruti Suzuki Maruti,Maruti Suzuki Omni,Maruti Suzuki Ritz,Maruti Suzuki S,Maruti Suzuki SX4,Maruti Suzuki Stingray,Maruti Suzuki Swift,Maruti Suzuki Versa,Maruti Suzuki Vitara,Maruti Suzuki Wagon,Maruti Suzuki Zen,Mercedes Benz A,Mercedes Benz B,Mercedes Benz C,Mercedes Benz GLA,Mini Cooper S,Mitsubishi Lancer 1.8,Mitsubishi Pajero Sport,Nissan Micra XL,Nissan Micra XV,Nissan Sunny,Nissan Sunny XL,Nissan Terrano XL,Nissan X Trail,Renault Duster,Renault Duster 110,Renault Duster 110PS,Renault Duster 85,Renault Duster 85PS,Renault Duster RxL,Renault Kwid,Renault Kwid 1.0,Renault Kwid RXT,Renault Lodgy 85,Renault Scala RxL,Skoda Fabia,Skoda Fabia 1.2L,Skoda Fabia Classic,Skoda Laura,Skoda Octavia Classic,Skoda Rapid Elegance,Skoda Superb 1.8,Skoda Yeti Ambition,Tata Aria Pleasure,Tata Bolt XM,Tata Indica,Tata Indica V2,Tata Indica eV2,Tata Indigo CS,Tata Indigo LS,Tata Indigo LX,Tata Indigo Marina,Tata Indigo eCS,Tata Manza,Tata Manza Aqua,Tata Manza Aura,Tata Manza ELAN,Tata Nano,Tata Nano Cx,Tata Nano GenX,Tata Nano LX,Tata Nano Lx,Tata Sumo Gold,Tata Sumo Grande,Tata Sumo Victa,Tata Tiago Revotorq,Tata Tiago Revotron,Tata Tigor Revotron,Tata Venture EX,Tata Vista Quadrajet,Tata Zest Quadrajet,Tata Zest XE,Tata Zest XM,Toyota Corolla,Toyota Corolla Altis,Toyota Corolla H2,Toyota Etios,Toyota Etios G,Toyota Etios GD,Toyota Etios Liva,Toyota Fortuner,Toyota Fortuner 3.0,Toyota Innova 2.0,Toyota Innova 2.5,Toyota Qualis,Volkswagen Jetta Comfortline,Volkswagen Jetta Highline,Volkswagen Passat Diesel,Volkswagen Polo,Volkswagen Polo Comfortline,Volkswagen Polo Highline,Volkswagen Polo Highline1.2L,Volkswagen Polo Trendline,Volkswagen Vento Comfortline,Volkswagen Vento Highline,Volkswagen Vento Konekt,Volvo S80 Summum'.split(',') ;
+
+    function load_car_models(company_id,car_model_id)
+    {
+        
+        var inputCompany=document.getElementById(company_id);
+        var car_model= document.getElementById(car_model_id);
+        console.log(inputCompany.value);
+        car_model.value="";
+        car_model.innerHTML="";
+
+        for(let companyName of companies){
+            if(inputCompany.value == companyName){
+
+                for (let model of car_models){
+                    // console.log(model,companyName,model.indexOf(companyName))
+                    if(model.indexOf(companyName) == 0 ){
+                        var newOption= document.createElement("option");
+                        newOption.value=model;
+                        newOption.innerHTML=model;
+                        car_model.options.add(newOption);
+
+                        // console.log(model)
+                    }
+                }
+            }
+        }
+        
+    }
+</script>
+
+</body>
+</html>
