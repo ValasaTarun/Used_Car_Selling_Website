@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title  %></title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        .row{
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 20px;
+        }
+        .center{
+            text-align: right;
+        }
+       
+    </style>
+
+</head>
+<body>
+    
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <a href="/" class="logo"> <span>max</span>wheels </a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#vehicles">vehicles</a>
+        <a href="#services">services</a>
+        <a href="#featured">featured</a>
+        <a href="#reviews">reviews</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div id="login-btn">
+        <button class="btn">login</button>
+        <i class="far fa-user"></i>
+    </div>
+
+</header> 
+    
+<div class="login-form-container">
+
+    <span id="close-login-form" class="fas fa-times"></span>
+
+    <form action="/users/login" method="post">
+        <h3>user login</h3>
+        <input type="email" name="email" placeholder="email" class="box">
+        <input type="password" name="pwd" placeholder="password" class="box">
+        <p> forget your password <a href="#">click here</a> </p>
+        <input type="submit" value="login" class="btn">
+       
+        <p> don't have an account <a href="#">create one</a> </p>
+    </form>
+
+</div>
+
+
+
+    
+
+<section class="home" id="home">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="https://media.istockphoto.com/photos/red-generic-sedan-car-isolated-on-white-background-3d-illustration-picture-id1189903200?k=20&m=1189903200&s=612x612&w=0&h=L2bus_XVwK5_yXI08X6RaprdFKF1U9YjpN_pVYPgS0o=" alt="Trulli" width="500" height="333">
+        </div>
+        <div class="col-sm-8">
+            <table class="table">
+                <thead>
+                  <tr>
+                
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Location</th>
+                    <td>Honda</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Company</th>
+                    <td>Honda Amaze 1.2</td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">Model</th>
+                    <td>Larry</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">purchased year</th>
+                    <td>Larry</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Kilometers Driven</th>
+                    <td>Larry</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Seller Quoted Price</th>
+                    <td>Larry</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Listed By</th>
+                    <td>Larry</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">If You are interested Contact Owner  </th>
+                    <td><a href="#" class=" btn btn-primary"> Contact Owner</a></td>
+                  </tr>
+
+                  <tr>
+                      <td></td>
+                  </tr>
+
+                </tbody>
+              </table>
+        </div>
+      </div>
+
+</section>
+
+
+
+
+
+<%- include('partials/footer.ejs') %>
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
