@@ -56,14 +56,14 @@ router.post('/register',async (req,res)=>{
 
   console.log(JSON.parse(JSON.stringify(req.body)));
   req.body["loginData"] = [];
-  // console.log(hashPassword(req.body.pwd));
-  req.body.pwd = hashPassword(req.body.pwd);
-  console.log(JSON.parse(JSON.stringify(req.body)));
+  console.log(hashPassword(req.body.password));
+  req.body.password = hashPassword(req.body.password)
+  console.log(JSON.parse(JSON.stringify(req.body))); 
 
   const insertRecord = JSON.parse(JSON.stringify(req.body));
   let collection = req.body.UserType == 'Seller' ? 'sellers' : 'buyers' 
-  const result = await dbConn.collection(collection).insertOne(insertRecord);
-  console.log(result);
+  // const result = await dbConn.collection(collection).insertOne(insertRecord);
+  // console.log(result);
 
   res.send('<center><h1> Register Form Submitted </center></h1>');
 
