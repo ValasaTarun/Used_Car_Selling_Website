@@ -40,13 +40,17 @@ router.get('/register', async (req,res)=>{
 
 router.get('/ListedCars',isLogined(), async (req,res)=>{
   const listedCars = await dbConn.collection('listedCars').find({}).toArray();
-  console.log(listedCars)
+  // console.log(listedCars)
   // res.send('listedCars')
-  res.render('listedCarsDisplay',{ result : listedCars , title: 'Listed Cars' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  })
+  res.render('listedCarsDisplay',{ result : listedCars , title: 'Listed Cars' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'})
 })
 
-router.get('/singleCar',isLogined(),(req,res)=>{
-  res.render('individualCarPage',{title: 'Contact Page'})
+router.get('/singleCar/:carId',isLogined(), async (req,res)=>{
+  // console.log(req.params)
+  const carId = req.params.carId;
+  const result = await dbConn.collection('listedCars').findOne({_id:ObjectId(carId)})
+  // console.log(result)
+  res.render('individualCarPage',{title: 'Contact Page',result,isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin' }) 
 })
 
 module.exports = router;

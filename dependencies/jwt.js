@@ -10,7 +10,7 @@ function generateToken(user,name){
         name,
         auth : true,
     }
-    token = jwt.sign({payload},process.env.SECRET_KEY,{expiresIn:'10 minutes'},{ algorithm: 'RS256'})
+    token = jwt.sign({payload},process.env.SECRET_KEY,{expiresIn:'20 minutes'},{ algorithm: 'RS256'})
     console.log(payload)
     return token;
 }

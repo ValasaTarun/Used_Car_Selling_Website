@@ -190,6 +190,7 @@ router.get('/logout',function(req,res,next){
 router.post('/addCar',isLogined(), async (req,res)=>{
   // console.log(req.body)
   req.body['listedBy'] = decodedResult(req.cookies.authToken).payload.name
+  req.body['timeStamp'] = returnDate();
   const insertRecord = JSON.parse(JSON.stringify(req.body));
   console.log(insertRecord);
   const result = await dbConn.collection('listedCars').insertOne(insertRecord);

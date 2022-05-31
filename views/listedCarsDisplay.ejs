@@ -31,11 +31,7 @@
     <a href="/" class="logo"> <span>max</span>wheels </a>
 
     <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#vehicles">vehicles</a>
-        <a href="#featured">featured</a>
-        <a href="#reviews">reviews</a>
-        <a href="#contact">contact</a>
+        <a href="#featured">featured</a>        
     </nav>
 
     <% if(isLogined){%>
@@ -97,15 +93,16 @@
                 <div class="content">
                     <h3><%= result[i].car_model %></h3>
                     <div class="stars">
-                       Hyderabad
+                      <%= result[i].location%>
                     </div>
                     <div class="price">&#x20b9;<%= result[i].ESP %>/-</div>
-                    <a href="#" class="btn">check out</a>
+                    <a href="/singleCar/<%=result[i]._id%>" class="btn">check out</a>
                 </div>
             </div>
         <% } %>
+        
 
-            <div class="swiper-slide box">
+            <!-- <div class="swiper-slide box">
                 <img src="image/car-2.png" alt="">
                 <div class="content">
                     <h3>new model</h3>
@@ -151,7 +148,7 @@
                     <div class="price">$55,000/-</div>
                     <a href="#" class="btn">check out</a>
                 </div>
-            </div>
+            </div> -->
 
        </div>
 

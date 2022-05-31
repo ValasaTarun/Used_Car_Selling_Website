@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -40,18 +40,20 @@
     <a href="/" class="logo"> <span>max</span>wheels </a>
 
     <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#vehicles">vehicles</a>
-        <a href="#services">services</a>
-        <a href="#featured">featured</a>
-        <a href="#reviews">reviews</a>
-        <a href="#contact">contact</a>
+       
     </nav>
 
-    <div id="login-btn">
-        <button class="btn">login</button>
-        <i class="far fa-user"></i>
-    </div>
+    <% if(isLogined){%>
+      <div id="login-btn">
+          <a href="/users/logout" class="btn">Logout</a>
+          <i class="far fa-user"></i>
+      </div>
+  <% } else { %>
+      <div id="login-btn">
+          <button class="btn">login</button>
+          <i class="far fa-user"></i>
+      </div>
+      <% } %>
 
 </header> 
     
@@ -80,43 +82,49 @@
             <table class="table">
                 <thead>
                   <tr>
-                
+                   
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">Location</th>
-                    <td>Honda</td>
+                    <td><%=result.location%></td>
                   </tr>
                   <tr>
                     <th scope="row">Company</th>
-                    <td>Honda Amaze 1.2</td>
+                    <td><%=result.company%></td>
                     
                   </tr>
                   <tr>
                     <th scope="row">Model</th>
-                    <td>Larry</td>
+                    <td><%=result.car_model%></td>
                   </tr>
 
                   <tr>
                     <th scope="row">purchased year</th>
-                    <td>Larry</td>
+                    <td><%=result.year%></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Kilometers Driven</th>
-                    <td>Larry</td>
+                    <td><%=result.kmsDriven%></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Seller Quoted Price</th>
-                    <td>Larry</td>
+                    <td><%=result.ESP%></td>
                   </tr>
 
                   <tr>
                     <th scope="row">Listed By</th>
-                    <td>Larry</td>
+                    <td><%=result.listedBy%></td>
                   </tr>
+
+                  <tr>
+                    <th scope="row">Listed On</th>
+                    <td><%=result.timeStamp.slice(0, 9)%></td>
+                  </tr>
+
 
                   <tr>
                     <th scope="row">If You are interested Contact Owner  </th>
@@ -144,7 +152,7 @@
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-<script src="js/script.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>
