@@ -5,6 +5,8 @@ var url = "mongodb://localhost:27017/mydb";
 var ObjectId = require('mongodb').ObjectId;
 var dbConn;
 const { generateToken , decodedResult } = require('../dependencies/jwt')
+const { spawn } = require('child_process');
+let resultArray , resultObj;
 MongoClient.connect(url, function (err, db) {
   if (err) throw err;
   console.log("Mongo Connection Success! Index");
@@ -60,5 +62,98 @@ router.get('/edit/:carId',async (req,res)=>{
   res.render('addCar',{title: 'List Car Page',result});
 
 })
+
+router.get('/form',(req,res)=>{
+
+  const app_py = spawn('python',['./python_scripts/app.py'])
+
+  const appPromsie = new Promise((resolve,reject)=>{
+
+    app_py.stdout.on('data',(data)=>{
+
+      resultArray = data.map((element) => element)
+      // console.log(JSON.parse(resultArray.toString()))
+      resultObj =  JSON.parse(resultArray.toString())
+      // console.log(resultObj)
+
+      // for(const [key,value] of Object.entries(resultObj)){
+      //     console.log(`key = ${key} , value = ${typeof(value)}`)
+      // }
+
+      for(const [key,value] of Object.entries(resultObj)){
+          resultObj[key] = value.split(',')
+      }
+
+      // console.log(resultObj)
+
+        resolve(resultObj)
+      //   resolve('OK')
+    })
+
+    app_py.stderr.on('data',(err)=>{
+         reject(console.log(`Error : ${err} `))
+    })
+  
+    app_py.on('close',(code)=>{
+        console.log('Exited with code' , code) 
+    })
+
+  }).then((result)=>{
+      console.log(typeof(result.companies))
+      res.render('form',{ result ,  })
+  }).catch((error)=>{
+      console.log('Error' , error) 
+      res.send(`<center><h1> ${error} </center></h1>`)
+  })
+
+  
+})
+
+router.post('/predict',(req,res)=>{
+
+  const predictFile = spawn('python',['./python_scripts/predict.py',JSON.stringify(req.body)])
+
+  const extPromise = new Promise((resolve,reject)=>{
+      
+      resultObj = ''
+      predictFile.stdout.on('data',  (data)=>{
+
+          // resultArray = data.map((element) => element)
+          // console.log(JSON.parse(resultArray.toString()))
+          // resultObj =  JSON.parse(resultArray.toString())
+
+          // for(const [key,value] of Object.entries(resultObj)){
+          //     console.log(`key = ${key} , value = ${value}`)
+          // }
+
+          console.log(`stdout--> : ${ data }`)
+         
+          
+      })
+
+      predictFile.stderr.on('data',(err)=>{
+          reject(console.log(`Error : ${err} `))
+      })
+      
+      predictFile.on('close',(code)=>{
+          resolve(resultObj)
+         console.log('Exited with code' , code) 
+      })
+
+  }).then((result)=> {
+      // console.log(result)
+      // res.render('submitted',{title:'Data Page',contentHeading : 'Dynamic Content', result})
+      res.send('Ok')
+  })
+  .catch((error) => {
+      console.log(error)
+      // res.render('submitted',{title:'Data Page',contentHeading : 'Dynamic Content', result:{Error:'Error'}})
+      res.send('Error')
+  })
+
+  // console.log(req.body)
+
+})
+
 
 module.exports = router;

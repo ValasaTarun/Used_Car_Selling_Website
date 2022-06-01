@@ -62,8 +62,8 @@ router.post('/register',async (req,res)=>{
 
   const insertRecord = JSON.parse(JSON.stringify(req.body));
   let collection = req.body.UserType == 'Seller' ? 'sellers' : 'buyers' 
-  // const result = await dbConn.collection(collection).insertOne(insertRecord);
-  // console.log(result);
+  const result = await dbConn.collection(collection).insertOne(insertRecord);
+  console.log(result);
 
   res.send('<center><h1> Register Form Submitted </center></h1>');
 
