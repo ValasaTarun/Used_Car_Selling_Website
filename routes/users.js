@@ -1,5 +1,4 @@
 var express = require('express');
-const res = require('express/lib/response');
 var router = express.Router();
 const { hashPassword, comparePasswords } = require('../dependencies/hashing')
 const { generateToken , decodedResult } = require('../dependencies/jwt')
@@ -43,9 +42,13 @@ router.get('/login',(req,res)=>{
  
 })
 
-router.get('/listCar',isLogined(),(req,res)=>{
+router.get('/listCar',isLogined(), async (req,res)=>{
   if(decodedResult(req.cookies.authToken).payload.user == 'sellers'){
-    res.render('addCar',{title: 'List Car Page'});
+    const cities = await dbConn.collection('cities').find({}).toArray();
+    const companies = await dbConn.collection('companies').find({}).toArray();
+    // console.log(cities)
+    res.render('addCar',{title: 'List Car Page',result : '',cities ,companies });
+    // res.send('<center><h1> You Have to be a Seller to List the Car </center></h1>')
   }
   else{
     res.send('<center><h1> You Have to be a Seller to List the Car </center></h1>')

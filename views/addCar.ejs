@@ -96,24 +96,9 @@
                 <label for="cars">Choose City:</label>
                 <select name="location" id="cars">
                     <option value="">Select your City</option><optgroup label="Top Cities">
-                    <option value="mumbai" data-testing-id="mumbai">Mumbai</option>
-                    <option value="bangalore" data-testing-id="bangalore">Bangalore</option>
-                    <option value="nagpur" data-testing-id="nagpur">Nagpur</option>
-                    <option value="bhopal" data-testing-id="bhopal">Bhopal</option>
-                    <option value="indore" data-testing-id="indore">Indore</option>
-                    <option value="kalyan" data-testing-id="kalyan">Kalyan</option>
-                    <option value="jabalpur" data-testing-id="jabalpur">Jabalpur</option>
-                    <option value="panvel" data-testing-id="panvel">Panvel</option>
-                    <option value="kochi" data-testing-id="kochi">Kochi</option>
-                    <option value="delhi" data-testing-id="delhi">Delhi</option>
-                    <option value="kurnool" data-testing-id="kurnool">Kurnool</option>
-                    <option value="pune" data-testing-id="pune">Pune</option>
-                    <option value="navi-mumbai" data-testing-id="navi-mumbai">Navi Mumbai</option>
-                    <option value="ahmednagar" data-testing-id="ahmednagar">Ahmednagar</option>
-                    <option value="akola" data-testing-id="akola">Akola</option>
-                    <option value="hyderabad" data-testing-id="akola">Hyderabad</option>
-                    <option value="amravati" data-testing-id="amravati">Amravati (Maharashtra)</option>
-                    <option value="aurangabad-maharashtra" data-testing-id="aurangabad-maharashtra">Aurangabad</option>
+                    <% for(let i = 0 ; i < cities.length ; i++){ %>
+                        <option value="<%=cities[i].name%>" ><%=cities[i].name%></option>
+                    <% } %>
                 </select>
             </div>
 
@@ -121,57 +106,11 @@
                 <label for="cars">Choose Car Company:</label>
                 <select  id="company" name="company" required="1" onchange="load_car_models(this.id,'car_models')" >
             
-                    <option value="Select Company">Select Company</option>
-                    
-                    <option value="Audi">Audi</option>
-                    
-                    <option value="BMW">BMW</option>
-                    
-                    <option value="Chevrolet">Chevrolet</option>
-                    
-                    <option value="Datsun">Datsun</option>
-                    
-                    <option value="Fiat">Fiat</option>
-                    
-                    <option value="Force">Force</option>
-                    
-                    <option value="Ford">Ford</option>
-                    
-                    <option value="Hindustan">Hindustan</option>
-                    
-                    <option value="Honda">Honda</option>
-                    
-                    <option value="Hyundai">Hyundai</option>
-                    
-                    <option value="Jaguar">Jaguar</option>
-                    
-                    <option value="Jeep">Jeep</option>
-                    
-                    <option value="Land">Land</option>
-                    
-                    <option value="Mahindra">Mahindra</option>
-                    
-                    <option value="Maruti">Maruti</option>
-                    
-                    <option value="Mercedes">Mercedes</option>
-                    
-                    <option value="Mini">Mini</option>
-                    
-                    <option value="Mitsubishi">Mitsubishi</option>
-                    
-                    <option value="Nissan">Nissan</option>
-                    
-                    <option value="Renault">Renault</option>
-                    
-                    <option value="Skoda">Skoda</option>
-                    
-                    <option value="Tata">Tata</option>
-                    
-                    <option value="Toyota">Toyota</option>
-                    
-                    <option value="Volkswagen">Volkswagen</option>
-                    
-                    <option value="Volvo">Volvo</option>
+                    <% for(let i = 0 ; i < companies.length ; i++){ %>
+                        <option value="<%=companies[i].name%>" ><%=companies[i].name%></option>
+
+                    <% } %>
+
             
                 </select>
             </div>

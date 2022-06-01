@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a62"
+  },
+  "name": "Mumbai"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a63"
+  },
+  "name": "Delhi"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a64"
+  },
+  "name": "Bangalore"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a65"
+  },
+  "name": "Hyderabad"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a66"
+  },
+  "name": "Ahmedabad"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a67"
+  },
+  "name": "Chennai"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a68"
+  },
+  "name": "Kolkata"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a69"
+  },
+  "name": "Surat"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a6a"
+  },
+  "name": "Pune"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a6b"
+  },
+  "name": "Jaipur"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a6c"
+  },
+  "name": "Lucknow"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a6d"
+  },
+  "name": "Kanpur"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a6e"
+  },
+  "name": "Nagpur"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a6f"
+  },
+  "name": "Indore"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a70"
+  },
+  "name": "Thane"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a71"
+  },
+  "name": "Bhopal"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a72"
+  },
+  "name": "Visakhapatnam"
+},{
+  "_id": {
+    "$oid": "6297a78f078f245e6db44a73"
+  },
+  "name": "Patna"
+}]
