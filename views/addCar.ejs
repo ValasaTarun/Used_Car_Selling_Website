@@ -95,9 +95,13 @@
             <div class="increaserFont">
                 <label for="cars">Choose City:</label>
                 <select name="location" id="cars">
-                    <option value="">Select your City</option><optgroup label="Top Cities">
+                    <option value="">Select your City</option>
                     <% for(let i = 0 ; i < cities.length ; i++){ %>
-                        <option value="<%=cities[i].name%>" ><%=cities[i].name%></option>
+                        <% if(result.location == cities[i].name){ %>
+                            <option selected  value="<%=cities[i].name%>" ><%=cities[i].name%></option>
+                        <% } else { %>
+                            <option  value="<%=cities[i].name%>" ><%=cities[i].name%></option>
+                            <% } %>
                     <% } %>
                 </select>
             </div>
@@ -105,10 +109,12 @@
             <div class="increaserFont">
                 <label for="cars">Choose Car Company:</label>
                 <select  id="company" name="company" required="1" onchange="load_car_models(this.id,'car_models')" >
-            
                     <% for(let i = 0 ; i < companies.length ; i++){ %>
-                        <option value="<%=companies[i].name%>" ><%=companies[i].name%></option>
-
+                        <% if(result.company == companies[i].name){ %>
+                            <option selected value="<%=companies[i].name%>" ><%=companies[i].name%></option>
+                        <% } else { %>
+                            <option value="<%=companies[i].name%>" ><%=companies[i].name%></option>
+                            <% } %>
                     <% } %>
 
             
@@ -120,62 +126,35 @@
             <div class="increaserFont">
                 <label for="cars">Select the model:</label>
                 <select class="selectpicker form-control" id="car_models" name="car_model" required="1" >
+
+                    <% for(let i = 0 ; i < models.length ; i++){ %>
+                        <% if(result.car_model == models[i]){ %>
+                            <option selected value="<%=models[i]%>" ><%=models[i]%></option>
+                        <% } else { %>
+                            <option value="<%=models[i]%>" ><%=models[i]%></option>
+                            <% } %>
+                    <% } %>
+                   
                 </select>
             </div>
 
             <div class="increaserFont">
                 <label>Select Year of Purchase: </label>
                 <select class="selectpicker form-control" id="year" name="year" required="1" style="width: 100px;">
-                    
-                    <option value="2019">2019</option>
-                    
-                    <option value="2018">2018</option>
-                    
-                    <option value="2017">2017</option>
-                    
-                    <option value="2016">2016</option>
-                    
-                    <option value="2015">2015</option>
-                    
-                    <option value="2014">2014</option>
-                    
-                    <option value="2013">2013</option>
-                    
-                    <option value="2012">2012</option>
-                    
-                    <option value="2011">2011</option>
-                    
-                    <option value="2010">2010</option>
-                    
-                    <option value="2009">2009</option>
-                    
-                    <option value="2008">2008</option>
-                    
-                    <option value="2007">2007</option>
-                    
-                    <option value="2006">2006</option>
-                    
-                    <option value="2005">2005</option>
-                    
-                    <option value="2004">2004</option>
-                    
-                    <option value="2003">2003</option>
-                    
-                    <option value="2002">2002</option>
-                    
-                    <option value="2001">2001</option>
-                    
-                    <option value="2000">2000</option>
-                    
-
-                    
+                    <% for(let i = 0 ; i < years.length ; i++){ %>
+                        <% if(result.year == years[i].name){ %>
+                            <option selected value="<%=years[i].name%>" ><%=years[i].name%></option>
+                        <% } else { %>
+                            <option value="<%=years[i].name%>" ><%=years[i].name%></option>
+                            <% } %>
+                    <% } %>
                 </select>
             </div>
             <br>
 
-            <input type="number" name="kmsDriven" step="500" min="15000" max="400000" placeholder="Kilometers Driven" required class="box">
+            <input type="number" name="kmsDriven" step="500" min="15000" value="<%=result.kmsDriven%>" max="400000" placeholder="Kilometers Driven" required class="box">
             <br>
-            <input type="number" name="ESP" step="10000" min="200000" max="4000000" placeholder="Expected Selling Price" required class="box">
+            <input type="number" name="ESP" step="10000" value="<%=result.ESP%>" min="200000" max="4000000" placeholder="Expected Selling Price" required class="box">
             <input type="file" id="img" name="carImage" accept="image/*" class="box">
 
             <input type="hidden" class="form-control"  id="exampleLastName1"  name="carId" value="<%=result._id%>"  >

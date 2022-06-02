@@ -46,8 +46,10 @@ router.get('/listCar',isLogined(), async (req,res)=>{
   if(decodedResult(req.cookies.authToken).payload.user == 'sellers'){
     const cities = await dbConn.collection('cities').find({}).toArray();
     const companies = await dbConn.collection('companies').find({}).toArray();
+    const years = await dbConn.collection('years').find({}).toArray();
+
     // console.log(cities)
-    res.render('addCar',{title: 'List Car Page',result : '',cities ,companies });
+    res.render('addCar',{title: 'List Car Page',result : '',cities ,companies,models: "",years });
     // res.send('<center><h1> You Have to be a Seller to List the Car </center></h1>')
   }
   else{
@@ -196,8 +198,41 @@ router.post('/addCar',isLogined(), async (req,res)=>{
   req.body['timeStamp'] = returnDate();
   const insertRecord = JSON.parse(JSON.stringify(req.body));
   console.log(insertRecord);
-  const result = await dbConn.collection('listedCars').insertOne(insertRecord);
-  console.log(result); 
+  // const result = await dbConn.collection('listedCars').insertOne(insertRecord);
+  // console.log(result); 
+
+  if(req.body.carId){
+    console.log('---------------> carId')
+    // console.log('---------------> from addProeprty')
+    // console.log(property)
+    // console.log('---------------> body')
+    // console.log(req.body)
+    
+    if(req.body.carImage){
+      insertRecord.carImage = 'Dummy text in node'
+    }
+
+    var temp = { $set: insertRecord }  
+    await dbConn.collection("listedCars").updateOne({ "_id": ObjectId(req.body.carId) }, temp)
+    console.log("1 row is edited");
+    res.redirect('/ListedCars')
+    
+  }
+  else{
+
+    console.log('---------------> from Car')
+    console.log('---------------> body')
+
+      // if(req.file){
+      //   console.log(req.file)
+      //   console.log(req.file.filename)
+      //   insertRecord.carImage = req.file.filename
+      // }
+      
+      const result = await dbConn.collection('listedCars').insertOne(insertRecord)
+      console.log(result)
+      res.redirect('/ListedCars')
+  }
   res.send(' Form Submitted ' + decodedResult(req.cookies.authToken).payload.name )
 
 

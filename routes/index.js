@@ -57,9 +57,16 @@ router.get('/singleCar/:carId',isLogined(), async (req,res)=>{
 
 router.get('/edit/:carId',async (req,res)=>{
 
-  console.log(req.params)
+  // console.log(req.params)
   const result = await dbConn.collection('listedCars').findOne({'_id':ObjectId(req.params.carId)});
-  res.render('addCar',{title: 'List Car Page',result});
+  const cities = await dbConn.collection('cities').find({}).toArray();
+  const companies = await dbConn.collection('companies').find({}).toArray();
+  const years = await dbConn.collection('years').find({}).toArray();
+  let models = await dbConn.collection('carModels').findOne({'company':result.company});
+  models = models.models
+  // console.log(result)
+  
+  res.render('addCar',{title: 'List Car Page',result,cities ,companies,models,years});
 
 })
 
