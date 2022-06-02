@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "6295823be6a9505c64dab4b1"
   },
-  "location": "indore",
+  "location": "Indore",
   "company": "Honda",
   "car_model": "Honda Amaze 1.2",
   "year": "2010",
@@ -15,7 +15,7 @@
   "_id": {
     "$oid": "6295b21fb1e44adc4abf684c"
   },
-  "location": "mumbai",
+  "location": "Mumbai",
   "company": "BMW",
   "car_model": "BMW 5 Series",
   "year": "2014",
