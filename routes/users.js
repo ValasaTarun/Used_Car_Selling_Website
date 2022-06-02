@@ -103,7 +103,7 @@ router.post('/validate', async function(req,res,next){
     else{
       console.log('admin')
     }
-
+    
     const bool = await comparePasswords(req.body.password, result.password);
 
     if( bool ){
@@ -238,67 +238,48 @@ router.post('/addCar',isLogined(), async (req,res)=>{
 
 })
 
-router.post('/addProperty',async function(req,res,next){
+router.post('/emailTaken', async (req,res,next)=>{
 
-  let property = {
-    name:req.body.name.trim(),
-    description:req.body.description,
-    city:req.body.city,
-    area:req.body.area,
-    listedBy:decodedResult(req.cookies.authToken).payload.name,
-    fileLocaiton:'',
-    propertyType:req.body.inlineRadioOptions,
-    price:req.body.price,
-    views:0,
-    isApproved:'false',
+  console.log(req.body)
+
+  const result1 = await dbConn.collection('buyers').findOne(req.body);
+  const result2 = await dbConn.collection('sellers').findOne(req.body);
+  if(result1){
+    res.send('1')
   }
-  const dbConn = returnCon()
-  if(req.body.pkey){
-    console.log('---------------> PKEY')
-    // console.log('---------------> from addProeprty')
-    // console.log(property)
-    // console.log('---------------> body')
-    console.log(req.body)
-    
-    if(req.file){
-      property.fileLocaiton = req.file.filename
-    }
-
-    var temp = { $set: property }  
-    await dbConn.collection("properties").updateOne({ "_id": ObjectId(req.body.pkey) }, temp)
-    console.log("1 row is edited");
-    res.redirect('/properties')
+  else if(result2){
+    res.send('2')
   }
   else{
+    res.send('no')
+  }
+  // console.log(result1,result2)
+})
 
-    console.log('---------------> from addProeprty')
-    console.log(property)
-    console.log('---------------> body')
-    console.log(req.body)
+router.post('/pwdTaken',async (req,res)=>{
 
-    if(property.name){
-      
-      if(req.file){
-        console.log(req.file)
-        console.log(req.file.filename)
-        property.fileLocaiton = req.file.filename
-      }
-      
-      const result = await dbConn.collection('properties').insertOne(property)
-      console.log(result)
-      res.redirect('/properties')
+  // console.log(req.body)
 
-
-    }
-    else{
-      res.send('property not listed')
-    }
-
-
+  let result;
+  if(req.body.user == '1'){
+     result = await dbConn.collection('buyers').findOne({email:req.body.email});
+  }
+  else if (req.body.user == '2'){
+     result = await await dbConn.collection('sellers').findOne({email:req.body.email});
   }
 
-
+  const bool = await comparePasswords(req.body.pwd, result.password);
+  console.log(bool)
+  if(bool){
+    res.send('ok')
+  }
+  else{
+    res.send('no')
+  }
+  // console.log(bool)
 })
+
+
 
 
 module.exports = router;

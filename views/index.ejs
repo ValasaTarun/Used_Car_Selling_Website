@@ -15,7 +15,16 @@
     <!-- custom css file link  -->
     <link rel="stylesheet" href="/css/style.css">
 
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        #emailError{
+            font-size: 11px;
+        }
+        #passwordError{
+            font-size: 11px;
+        }
+    </style>
 </head>
 <body>
     
@@ -53,12 +62,14 @@
 
     <span id="close-login-form" class="fas fa-times"></span>
 
-    <form action="/users/validate" method="post">
+    <form action="/users/validate" method="post" id="myForm">
         <h3>user login</h3>
-        <input type="email" name="email" placeholder="email" class="box">
-        <input type="password" name="password" placeholder="password" class="box">
+        <input type="email" id="inputEmail" name="email" placeholder="email" class="box">
+        <div id="emailError" ></div>
+        <input type="password" id="inputPassword" name="password" placeholder="password" class="box">
+        <div id="passwordError"></div>
         <p> forget your password <a href="#">click here</a> </p>
-        <input type="submit" value="login" class="btn">
+        <button  class="btn btn-primary">Login</button>
        
         <p> don't have an account <a href="/register">create one</a> </p>
     </form>
@@ -494,6 +505,118 @@
 
 
 <%- include('partials/footer.ejs') %>
+
+<script>
+    $('#myForm').submit(function (event) {
+        event.preventDefault();
+        // window.history.back();
+        console.log("indside")
+
+        const email = document.getElementById('inputEmail').value.trim()
+			const password = document.getElementById('inputPassword').value.trim()
+			const nameRegex = /^[a-zA-Z0-9]+$/;
+			const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+			let isValid = true;
+			
+			// console.log(name,email,password)
+			if(email.length == 0){
+				isValid = false;
+				document.getElementById('emailError').innerHTML = 'Email cannot be empty'
+                $('#emailError').css('color', 'red');
+			}
+			else if (email.match(emailRegex)) {
+				document.getElementById('emailError').innerHTML = ''
+			}
+			else{
+				isValid = false;
+				document.getElementById('emailError').innerHTML = 'Please Enter valid Email'
+                $('#emailError').css('color', 'red');
+			}
+			let pwdError = '';
+			// if (password.match(passwordRegex)) {
+			// 	document.getElementById('passwordError').innerHTML = ''
+			// }else{
+			// 	isValid = false;
+			// 	document.getElementById('passwordError').innerHTML = 'Enter Valid Password'
+			// }
+			if(password.length == 0){
+				isValid = false;
+				pwdError += ' Password cannot be empty'
+			}
+			// if( password.length < 8){
+			// 	isValid = false;
+			// pwdError +=  ' Password cannot be less than 8 characters'
+			// }
+			if(pwdError != ''){
+				isValid = false;
+				// console.log(pwdError)
+				document.getElementById('passwordError').innerHTML = pwdError;
+                $('#passwordError').css('color', 'red');
+				pwdError = ''
+			}
+			
+			if (isValid) {
+				var emailExists;
+				var againCheck = true;
+			$.ajaxSetup({async: false});
+			$.ajax({
+					url:'/users/emailTaken',
+					method:'POST',
+					contentType:'application/json',
+					data : JSON.stringify({
+						email:$('#inputEmail').val(),
+					})
+				}).done(function(result){
+					console.log('=======> ',result)
+					emailExists = result;
+					if(emailExists == 'no'){
+						document.getElementById('emailError').innerHTML = 'Email Does not Exist'
+						againCheck = false;
+					}
+				}).fail(function(err){
+					console.log(err)
+				})
+				
+				if(emailExists != 'no'){
+					console.log('Email Exists ==============')
+					$.ajax({
+						url:'/users/pwdTaken',
+						method:'POST',
+						contentType:'application/json',
+						data : JSON.stringify({
+							pwd:$('#inputPassword').val(),
+							email:$('#inputEmail').val(),
+							user:emailExists,
+						})
+					}).done(function(result){
+						console.log('result , ',result)
+						if(result != 'ok'){
+							document.getElementById('passwordError').innerHTML = 'Password is Incorrect'
+							againCheck = false;
+						}
+					}).fail(function(err){
+						console.log(err)
+					})
+				}
+				$.ajaxSetup({async: true});
+				console.log('againCheck,',againCheck)
+				if(againCheck){
+					document.getElementById('myForm').submit()
+				}
+				else {
+				event.preventDefault();
+				console.log('---------------------')
+				}
+			}
+			else {
+				event.preventDefault();
+				console.log('---------------------')
+			}
+
+
+    });
+</script>
 
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
