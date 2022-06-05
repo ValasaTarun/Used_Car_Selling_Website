@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
+var url = "mongodb://localhost:27017/cars_website";
 var ObjectId = require('mongodb').ObjectId;
 var dbConn;
 const { generateToken , decodedResult } = require('../dependencies/jwt')
@@ -72,7 +72,7 @@ router.get('/edit/:carId',async (req,res)=>{
 
 router.get('/form',(req,res)=>{
 
-  const app_py = spawn('python',['./python_scripts/app.py'])
+  const app_py = spawn('python3',['./python_scripts/app.py'])
 
   const appPromsie = new Promise((resolve,reject)=>{
 
@@ -118,7 +118,7 @@ router.get('/form',(req,res)=>{
 
 router.post('/predict',(req,res)=>{
 
-  const predictFile = spawn('python',['./python_scripts/predict.py',JSON.stringify(req.body)])
+  const predictFile = spawn('python3',['./python_scripts/predict.py',JSON.stringify(req.body)])
 
   const extPromise = new Promise((resolve,reject)=>{
       

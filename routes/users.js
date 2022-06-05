@@ -4,7 +4,7 @@ const { hashPassword, comparePasswords } = require('../dependencies/hashing')
 const { generateToken , decodedResult } = require('../dependencies/jwt')
 const { returnDate } = require('../dependencies/date');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
+var url = "mongodb://localhost:27017/cars_website";
 var ObjectId = require('mongodb').ObjectId;
 var dbConn;
 MongoClient.connect(url, function (err, db) {

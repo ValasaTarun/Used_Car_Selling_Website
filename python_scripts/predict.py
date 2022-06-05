@@ -6,8 +6,8 @@ import warnings
 import json
 warnings.filterwarnings("ignore")
 
-model=pickle.load(open(r'C:\Users\mittu\Desktop\node\Testing\python_scripts\car_price_predictor-master\LinearRegressionModel.pkl','rb'))
-car=pd.read_csv(r'C:\Users\mittu\Desktop\node\Testing\python_scripts\car_price_predictor-master\Cleaned_Car_data.csv')
+model=pickle.load(open(r'/home/tarun.v/Major_Project/UsedCar_Selling_Website/python_scripts/car_price_predictor-master/LinearRegressionModel.pkl','rb'))
+car=pd.read_csv(r'/home/tarun.v/Major_Project/UsedCar_Selling_Website/python_scripts/car_price_predictor-master/Cleaned_Car_data.csv')
 
 formData = str(sys.argv[1:][0])
 resultDict = json.loads(formData)
