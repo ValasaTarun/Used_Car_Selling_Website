@@ -27,8 +27,9 @@ function isLogined(){
 }
 
 /* GET home page. */
-router.get('/', isLogined() ,function(req, res, next) {
-  res.render('index', { title: 'Car Selling Website' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  });
+router.get('/', isLogined() ,async function(req, res, next) {
+  const listedCars = await dbConn.collection('listedCars').find({}).toArray();
+  res.render('index', {result : listedCars, title: 'Car Selling Website', clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  });
 });
 
 router.get('/contact', async (req,res)=>{

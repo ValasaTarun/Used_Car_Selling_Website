@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title><%= title  %></title>
+    <title><%=title%></title>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
@@ -103,23 +103,23 @@
 
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide box">
-                <img src="image/vehicle-1.png" alt="">
-                <div class="content">
-                    <h3>new model</h3>
-                    <div class="price"> <span>price : </span> $62,000/- </div>
-                    <p>
-                        new
-                        <span class="fas fa-circle"></span> 2021
-                        <span class="fas fa-circle"></span> automatic
-                        <span class="fas fa-circle"></span> petrol
-                        <span class="fas fa-circle"></span> 183mph
-                    </p>
-                    <a href="#" class="btn">check out</a>
+            <% for(let i = 0 ; i < result.length ; i++){ %>
+                <div class="swiper-slide box">
+                    <img src="image/car-1.png" alt="">
+                   
+                    <div class="content">
+                        <h3><%= result[i].car_model %></h3>
+                        <div class="stars">
+                          <%= result[i].location%>
+                        </div>
+                        <div class="price">&#x20b9;<%= result[i].ESP %>/-</div>
+                        <a href="/edit/<%=result[i]._id%>" class="btn">Edit</a>
+                        <a href="/singleCar/<%=result[i]._id%>" class="btn">check out</a>
+                    </div>
                 </div>
-            </div>
+            <% } %>
 
-            <div class="swiper-slide box">
+            <!-- <div class="swiper-slide box">
                 <img src="image/vehicle-2.png" alt="">
                 <div class="content">
                     <h3>new model</h3>
@@ -197,7 +197,7 @@
                     </p>
                     <a href="#" class="btn">check out</a>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
