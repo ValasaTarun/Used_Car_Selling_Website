@@ -29,7 +29,7 @@ function isLogined(){
 /* GET home page. */
 router.get('/', isLogined() ,async function(req, res, next) {
   const listedCars = await dbConn.collection('listedCars').find({}).toArray();
-  res.render('index', {result : listedCars, title: 'Car Selling Website', clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  });
+  res.render('index', {admin : false , result : listedCars, title: 'Car Selling Website', clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  });
 });
 
 router.get('/contact', async (req,res)=>{
@@ -69,6 +69,12 @@ router.get('/edit/:carId',async (req,res)=>{
   
   res.render('addCar',{title: 'List Car Page',result,cities ,companies,models,years});
 
+})
+
+router.get('/resetPassword',(req,res)=>{
+
+  res.render('resetPassword',{title: 'Reset Your Password'})
+  
 })
 
 router.get('/form',(req,res)=>{

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%=title%></title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .increaseFontSize{
+            font-size: 20px;
+        }
+        #emailError{
+            font-size: 11px;
+        }
+        #passwordError{
+            font-size: 11px;
+        }
+        .morePadding{
+			padding-top: 100px;
+		}
+		.reduceWidth{
+			margin: 0px ;
+			padding: 0px ;
+			height: 10px;
+		}
+		.morePaddingBottom{
+			padding-bottom: 30px;
+		}
+
+    </style>
+</head>
+<body >
+    
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <a href="/admin" class="logo "> <span>max</span>wheels </a>
+
+    
+
+    <% if(isLogined){%>
+        <div id="login-btn">
+            <a href="/admin/logout" class="btn increaseFontSize">Logout</a>
+            <i class="far fa-user"></i>
+        </div>
+    <% } else { %>
+        <div id="login-btn">
+            <button class="btn">login</button>
+            <i class="far fa-user"></i>
+        </div>
+        <% } %>
+
+</header> 
+
+
+<% if(admin){ %>
+    
+    <div class="login-form-container">
+
+        <span id="close-login-form" class="fas fa-times"></span>
+
+        <form action="/admin/validate" method="post">
+            <h3>Admin login</h3>
+            <input type="text" id="inputEmail" name="name" placeholder="email" class="box">
+            
+            <input type="password" id="inputPassword" name="password" placeholder="password" class="box">
+            
+
+            <button  class="btn btn-primary">Login</button>
+        
+           
+        </form>
+
+    </div>
+
+<% } else {%>
+
+
+    
+
+    <% } %>
+
+
+<% if(clickLogin){ %>
+    <script>
+        document.querySelector('.login-form-container').classList.toggle('active');
+    </script>
+<% } %>
+
+<section class="home" id="home">
+
+    <h3 data-speed="-2" class="">
+        Admin Panel
+    </h3>
+
+    
+
+</section>
+
+<hr>
+
+<section class="vehicles" id="vehicles">
+
+
+    <h1 class="heading"> Users <span>Data</span> </h1>
+
+    <div class="container increaseFontSize">
+        <div class="row table-responsive-sm">
+
+            <h2><% if(user == 'sellers'){ %> Sellers Data <%}else{%> Buyers Data <%}%> </h2>
+
+            <table class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">SNo.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <% if(user == 'owners'){ %>
+                        <th scope="col">Phone</th>
+                        <%}%>
+                    <th scope="col">User Activity</th>
+                  </tr>
+                </thead>
+                <tbody>
+					<% if(result.length != 0) {%>
+						<% for(let i = 0 ; i < result.length ; i++) { %>
+							<tr>
+								<th scope="row"><%=i+1%></th>
+								<td><%=result[i].name%></td>
+								<td><%=result[i].email%></td>
+                                <% if(user == 'owners'){ %>
+                                    <td><%=result[i].phone%></td>
+                                <%}%>
+								
+							   <td><a href="/admin/loginHistory/<%=result[i].name%>/<%=user%>" >Click Here </a></td>
+			
+							  </tr>
+							 <%}%>
+						<%} else {%>
+							<td <% if(users == 'owners'){ %> colspan="5"  <%}else{%> colspan="4" <%}%> >No Data to Display</td>
+							<%}%>
+                </tbody>
+              </table>
+        
+
+			 
+
+
+        </div>
+    </div>
+    
+
+</section>
+
+<section class="services morePadding" id="services">
+
+
+
+    
+</section>
+
+<section class="featured morePaddingBottom" id="featured">
+
+
+
+    
+
+</section>
+
+
+
+<section class="reviews" id="reviews">
+
+
+    
+</section>
+
+
+
+
+<%- include('partials/footer.ejs') %>
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
