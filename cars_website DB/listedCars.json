@@ -8,9 +8,11 @@
   "year": "2010",
   "kmsDriven": "32000",
   "ESP": "400000",
-  "carImage": "",
+  "carImage": "carImage_1654753469938.jpeg",
   "listedBy": "Tarun",
-  "timeStamp": "30/5/2022, 11:32:29 am"
+  "timeStamp": "09/06/2022, 11:14:29",
+  "isApproved": "false",
+  "carId": "6295823be6a9505c64dab4b1"
 },{
   "_id": {
     "$oid": "6295b21fb1e44adc4abf684c"
@@ -21,7 +23,24 @@
   "year": "2014",
   "kmsDriven": "41500",
   "ESP": "1500000",
-  "carImage": "",
+  "carImage": "carImage_1654753454976.jpeg",
   "listedBy": "Tarun",
-  "timeStamp": "31/5/2022, 11:43:51 am"
+  "timeStamp": "09/06/2022, 11:14:14",
+  "isApproved": "false",
+  "carId": "6295b21fb1e44adc4abf684c"
+},{
+  "_id": {
+    "$oid": "62a185a18a86acda1deea336"
+  },
+  "location": "Hyderabad",
+  "company": "Skoda",
+  "car_model": "Skoda Superb 1.8",
+  "year": "2014",
+  "kmsDriven": "30500",
+  "ESP": "1100000",
+  "carImage": "carImage_1654752833849.jpeg",
+  "carId": "62a185a18a86acda1deea336",
+  "listedBy": "Tarun",
+  "timeStamp": "09/06/2022, 11:08:59",
+  "isApproved": "false"
 }]
