@@ -3,6 +3,8 @@ var router = express.Router();
 const { hashPassword, comparePasswords } = require('../dependencies/hashing')
 const { generateToken , decodedResult } = require('../dependencies/jwt')
 const { returnDate } = require('../dependencies/date');
+const multer = require('multer');
+var path = require('path');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/cars_website";
 var ObjectId = require('mongodb').ObjectId;
@@ -13,6 +15,37 @@ MongoClient.connect(url, function (err, db) {
   dbConn = db.db("cars_website");
 
 });
+
+
+const storage = multer.diskStorage({
+  destination : './public/uploads',
+  filename:function(req,file,cb){
+      cb(null,file.fieldname + '_' + Date.now() + path.extname(file.originalname));
+  }
+})
+
+const upload = multer({
+  storage:storage,
+  limits:{fileSize:10000000},
+  fileFilter:function(req,file,cb){
+      checkFileType(file,cb);
+  }
+})
+
+function checkFileType(file, cb){
+
+  const filetypes = /jpeg|jpg|png/;
+
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+  const mimetype = filetypes.test(file.mimetype);
+
+  if(mimetype && extname){
+    return cb(null,true);
+  } else {
+    cb('Error iamges only');
+  }
+}
 
 
 /* GET users listing. */
@@ -192,10 +225,12 @@ router.get('/logout',function(req,res,next){
   
 })
 
-router.post('/addCar',isLogined(), async (req,res)=>{
+router.post('/addCar',isLogined(),upload.single('carImage'), async (req,res)=>{
   // console.log(req.body)
   req.body['listedBy'] = decodedResult(req.cookies.authToken).payload.name
   req.body['timeStamp'] = returnDate();
+  req.body['isApproved'] = "false";
+  
   const insertRecord = JSON.parse(JSON.stringify(req.body));
   console.log(insertRecord);
   // const result = await dbConn.collection('listedCars').insertOne(insertRecord);
@@ -206,10 +241,16 @@ router.post('/addCar',isLogined(), async (req,res)=>{
     // console.log('---------------> from addProeprty')
     // console.log(property)
     // console.log('---------------> body')
-    // console.log(req.body)
+    console.log(req.body)
     
-    if(req.body.carImage){
-      insertRecord.carImage = 'Dummy text in node'
+
+    if(req.file){
+      insertRecord.carImage = req.file.filename
+    }
+    else{
+      const result = await dbConn.collection('listedCars').findOne({ "_id": ObjectId(req.body.carId)});
+      console.log(result)
+      insertRecord.carImage = result.carImage;
     }
 
     var temp = { $set: insertRecord }  
@@ -223,17 +264,16 @@ router.post('/addCar',isLogined(), async (req,res)=>{
     console.log('---------------> from Car')
     console.log('---------------> body')
 
-      // if(req.file){
-      //   console.log(req.file)
-      //   console.log(req.file.filename)
-      //   insertRecord.carImage = req.file.filename
-      // }
+      if(req.file){
+        console.log(req.file)
+        console.log(req.file.filename)
+        insertRecord.carImage = req.file.filename
+      }
       
       const result = await dbConn.collection('listedCars').insertOne(insertRecord)
       console.log(result)
       res.redirect('/ListedCars')
   }
-  res.send(' Form Submitted ' + decodedResult(req.cookies.authToken).payload.name )
 
 
 })
