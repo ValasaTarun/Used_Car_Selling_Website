@@ -43,9 +43,10 @@ router.get('/register', async (req,res)=>{
 
 router.get('/ListedCars',isLogined(), async (req,res)=>{
   const listedCars = await dbConn.collection('listedCars').find({}).toArray();
+  let user = decodedResult(req.cookies.authToken).payload.user;
   // console.log(listedCars)
   // res.send('listedCars')
-  res.render('listedCarsDisplay',{ result : listedCars , title: 'Listed Cars' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'})
+  res.render('listedCarsDisplay',{user, result : listedCars , title: 'Listed Cars' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'})
 })
 
 router.get('/singleCar/:carId',isLogined(), async (req,res)=>{
@@ -109,7 +110,7 @@ router.get('/form',(req,res)=>{
     })
   
     app_py.on('close',(code)=>{
-        console.log('Exited with code' , code) 
+        console.log('Exited with code form' , code) 
     })
 
   }).then((result)=>{
@@ -124,6 +125,7 @@ router.get('/form',(req,res)=>{
 })
 
 router.post('/predict',(req,res)=>{
+
 
   const predictFile = spawn('python3',['./python_scripts/predict.py',JSON.stringify(req.body)])
 
@@ -141,6 +143,7 @@ router.post('/predict',(req,res)=>{
           // }
 
           console.log(`stdout--> : ${ data }`)
+          res.send(data);
          
           
       })
@@ -157,12 +160,12 @@ router.post('/predict',(req,res)=>{
   }).then((result)=> {
       // console.log(result)
       // res.render('submitted',{title:'Data Page',contentHeading : 'Dynamic Content', result})
-      res.send('Ok')
+      
   })
   .catch((error) => {
       console.log(error)
       // res.render('submitted',{title:'Data Page',contentHeading : 'Dynamic Content', result:{Error:'Error'}})
-      res.send('Error')
+      
   })
 
   // console.log(req.body)
