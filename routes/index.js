@@ -42,8 +42,8 @@ router.get('/register', async (req,res)=>{
 })
 
 router.get('/ListedCars',isLogined(), async (req,res)=>{
-  const listedCars = await dbConn.collection('listedCars').find({}).toArray();
   let user = decodedResult(req.cookies.authToken).payload.user;
+  const listedCars = await dbConn.collection('listedCars').find({"listedBy":decodedResult(req.cookies.authToken).payload.name}).toArray();
   // console.log(listedCars)
   // res.send('listedCars')
   res.render('listedCarsDisplay',{user, result : listedCars , title: 'Listed Cars' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'})
@@ -71,6 +71,19 @@ router.get('/edit/:carId',async (req,res)=>{
   res.render('addCar',{title: 'List Car Page',result,cities ,companies,models,years});
 
 })
+
+router.get('/delete/:carId',async (req, res) => {
+
+  
+  const result = await dbConn.collection("listedCars").deleteOne({ "_id": ObjectId(req.params.carId)});
+  console.log(result)
+
+  res.redirect('/listedCars')
+ 
+
+})
+
+
 
 router.get('/resetPassword',(req,res)=>{
 

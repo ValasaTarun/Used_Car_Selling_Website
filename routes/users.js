@@ -70,6 +70,7 @@ router.get('/login',(req,res)=>{
     res.redirect('/');
   }
   else{
+    
     res.render('index', {admin : false , title: 'Car Selling Website' , clickLogin : true , isLogined : false ,result : [] });
   }
  
