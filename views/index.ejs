@@ -19,10 +19,10 @@
 
     <style>
         #emailError{
-            font-size: 11px;
+            font-size: 15px;
         }
         #passwordError{
-            font-size: 11px;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -38,7 +38,8 @@
         <a href="#home">home</a>
         <a href="#vehicles">vehicles</a>
         <a href="/listedCars">featured</a>
-        <a href="#contact">contact</a>
+        <a href="/users/listCar">List Car</a>
+        <a href="/contact">contact</a>
     </nav>
 
     <% if(isLogined){%>
@@ -89,7 +90,7 @@
             <div id="emailError" ></div>
             <input type="password" id="inputPassword" name="password" placeholder="password" class="box">
             <div id="passwordError"></div>
-            <p> forget your password <a href="#">click here</a> </p>
+            
             <button  class="btn btn-primary">Login</button>
         
             <p> don't have an account <a href="/register">create one</a> </p>

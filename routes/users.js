@@ -73,7 +73,7 @@ router.get('/login',(req,res)=>{
     
     res.render('index', {admin : false , title: 'Car Selling Website' , clickLogin : true , isLogined : false ,result : [] });
   }
- 
+
 })
 
 router.get('/listCar',isLogined(), async (req,res)=>{

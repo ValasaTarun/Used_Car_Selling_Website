@@ -28,7 +28,7 @@ function isLogined(){
 
 /* GET home page. */
 router.get('/', isLogined() ,async function(req, res, next) {
-  const listedCars = await dbConn.collection('listedCars').find({}).toArray();
+  const listedCars = await dbConn.collection('listedCars').find({isApproved: 'true'}).toArray();
   res.render('index', {admin : false , result : listedCars, title: 'Car Selling Website', clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'  });
 });
 
@@ -43,7 +43,7 @@ router.get('/register', async (req,res)=>{
 
 router.get('/ListedCars',isLogined(), async (req,res)=>{
   let user = decodedResult(req.cookies.authToken).payload.user;
-  const listedCars = await dbConn.collection('listedCars').find({"listedBy":decodedResult(req.cookies.authToken).payload.name}).toArray();
+  const listedCars = await dbConn.collection('listedCars').find({"listedBy":decodedResult(req.cookies.authToken).payload.name,isApproved: 'true'}).toArray();
   // console.log(listedCars)
   // res.send('listedCars')
   res.render('listedCarsDisplay',{user, result : listedCars , title: 'Listed Cars' , clickLogin : false , isLogined : decodedResult(req.cookies.authToken).payload.user != 'admin'})
